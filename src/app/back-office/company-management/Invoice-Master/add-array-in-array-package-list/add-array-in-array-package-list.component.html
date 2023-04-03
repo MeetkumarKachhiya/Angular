@@ -1,0 +1,55 @@
+<style>
+    table tr th,
+    table tr td {
+        padding: 10px;
+        height: 10px;
+    }
+
+    .table-height {
+        overflow: auto;
+        max-height: 400px;
+    }
+</style>
+
+
+<!-- <button type="button" (click)="logout()">Logout</button> -->
+
+&nbsp;&nbsp;&nbsp;
+<div>
+    <div style="font-size:30px; text-align: left;">Invoice Data List</div>
+    &nbsp;
+    <div style="display: flex; justify-content:space-between; align-items: center;" class="form-group">
+        <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term" style="width: 100px;">
+        <a [routerLink]="['/admin/add-array-in-array-package']"> <button
+                class="btn btn-info">AddArrayInArrayPackage</button></a>
+    </div>
+    <div class="table-height">
+        <table matSort (matSortChange)="sortData($event)" border="1 px Solid black"
+            style="text-align:center; width: 17%;">
+            <tr>
+                <th>Id</th>
+                <th mat-sort-header="billDate">Package Name</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr
+                *ngFor="let invoiceData of empApiData | filter:term | paginate: { itemsPerPage: ip, currentPage: p}; let i =index">
+                <th> {{ ip * (p - 1) + i +1 }}</th>
+                <td>{{invoiceData.packageName}}</td>
+                <td>
+                    <a
+                        routerLink="/admin/edit-array-in-array-package/{{invoiceData._id}}/{{i}}"><button>Edit</button></a>
+                </td>
+                <td>
+                    <button (click)="Delete(invoiceData._id)">Delete</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+<a [routerLink]="['/admin/dashboard']"> <button class="btn btn-info">Back</button></a>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

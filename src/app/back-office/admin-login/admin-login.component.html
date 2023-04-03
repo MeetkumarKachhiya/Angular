@@ -1,0 +1,38 @@
+<html>
+<script></script>
+
+<body>
+    <div>
+        <h1 style="margin-left: 730px; padding-top: 260px; margin-bottom: 20px;">Login Page</h1>
+        <form [formGroup]="loginForm">
+            <div style="margin-left: 710px; margin-bottom: 20px;">
+                <input type="text" placeholder="email" name="email" formControlName="email" class="formControl">
+                <div *ngIf="loginUserData && this.loginForm.controls.email.errors">
+                    <div *ngIf="this.loginForm.controls.email.errors.required">
+                        <span class="error_msg" style="color: red;">email is Required.</span>
+                    </div>
+                    <div
+                        *ngIf="!this.loginForm.controls.email.errors.valid && !this.loginForm.controls.email.errors.required">
+                        <span class="error_msg" style="color: red;">Please Enter Valid Email ID.</span>
+                    </div>
+                    &nbsp;
+                </div>
+            </div>
+            <div style="margin-left: 710px;">
+                <input type="pwd" placeholder="pwd" name="pwd" formControlName="pwd" class="formControl">
+                <div *ngIf="loginUserData && this.loginForm.controls.pwd.errors">
+                    <div *ngIf="this.loginForm.controls.pwd.errors.required">
+                        <span class="error_msg" style="color: red;">password is Required.</span>
+                    </div>
+                    &nbsp;
+                </div>
+            </div>
+            &nbsp;
+            <div class="text-center">
+                <button type="button" class="btn btn-info" (click)="login()">Sign in</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

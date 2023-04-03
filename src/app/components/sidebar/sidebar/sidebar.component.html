@@ -1,0 +1,284 @@
+<!-- <mat-toolbar>
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened">
+            menu
+        </mat-icon>
+        <mat-icon *ngIf="sidenav.opened">
+            close
+        </mat-icon>
+    </button>
+    Responsive sidebar navigation
+</mat-toolbar> -->
+
+<mat-sidenav-container>
+
+    <!-- <mat-sidenav #sidenav="matSidenav"> -->
+    <mat-sidenav mode="side" opened>
+
+        <!-- <img class="avatar mat-elevation-z8" src="{{imagPath}}" style="border: 1px; border-radius: 50%;" /> -->
+        <img src="{{imagPath}}"
+            style="width: 100px; height: 100px; border: 0.7px black solid; border-radius: 50%; margin-right: 20px;">
+
+        <h4 class="name" style="margin-right: 15px;">{{fullName}}</h4>
+        <!-- <p class="designation">Software Engineer</p> -->
+
+        <mat-divider></mat-divider>
+
+
+
+        <div>
+            <button mat-button class="menu-button" (click)="Dashboard()">
+                <!-- <mat-icon>dashboard</mat-icon> -->
+                <span>Dashboard</span>
+            </button>
+        </div>
+
+        <!-- <a (click)="newsclick()"> -->
+        <div>
+            <button mat-button class="menu-button" (click)="newsclick()">
+                <!-- <mat-icon>news</mat-icon> -->
+                <span>News</span>
+            </button>
+            <ul *ngIf="news === true">
+                <li>
+                    <a [routerLink]="['/admin/news-list']">
+                        <button mat-button class="menu-button">
+                            <!-- <mat-icon>news</mat-icon> -->
+                            <span>News-List</span>
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/add-new-news']">
+                        <button mat-button class="menu-button">
+                            <!-- <mat-icon>news</mat-icon> -->
+                            <span>News-Add</span>
+                        </button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- </a> -->
+
+        <!-- <a (click)="empclick()"> -->
+        <div>
+            <button mat-button class="menu-button" (click)="empclick()">
+                <!-- <mat-icon>person</mat-icon> -->
+                <span>Emp</span>
+            </button>
+            <ul *ngIf="emp === true">
+                <li>
+                    <a [routerLink]="['/admin/emp-basic-info']">
+                        <button mat-button class="menu-button">
+                            <!-- <mat-icon>news</mat-icon> -->
+                            <span>Emp-List</span>
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/emp-basic-info-save']">
+                        <button mat-button class="menu-button">
+                            <!-- <mat-icon>news</mat-icon> -->
+                            <span>Emp-Add</span>
+                        </button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- </a> -->
+
+        <!-- <a (click)="blockclick()"> -->
+        <div>
+            <button mat-button class="menu-button" (click)="blockclick()">
+                <!-- <mat-icon>blog</mat-icon> -->
+                <span>Block</span>
+            </button>
+            <ul *ngIf="block === true">
+                <li>
+                    <a [routerLink]="['/admin/blog-list']">
+                        <button mat-button class="menu-button">
+                            <!-- <mat-icon>blok</mat-icon> -->
+                            <span>Block-List</span>
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/add-new-blog']">
+                        <button mat-button class="menu-button">
+                            <!-- <mat-icon>blok</mat-icon> -->
+                            <span>Block-Add</span>
+                        </button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- </a> -->
+
+
+
+
+        <div>
+            <button mat-button class="menu-button" (click)="CompanyManagementclick()">
+                <!-- <mat-icon>blog</mat-icon> -->
+                <span>CompanyManagement</span>
+            </button>
+            <ul *ngIf="CompanyManagement === true">
+                <li>
+                    <a [routerLink]="['/admin/create-invoice']">
+                        <button mat-button class="menu-button">
+                            <!-- <mat-icon>blok</mat-icon> -->
+                            <span>Create-Invoice</span>
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/invoice-list']">
+                        <button mat-button class="menu-button">
+                            <!-- <mat-icon>blok</mat-icon> -->
+                            <span>Invoice-List</span>
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/add-array-in-array']">
+                        <button mat-button class="menu-button">
+                            <!-- <mat-icon>blok</mat-icon> -->
+                            <span>AddArrayInArray</span>
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/array-in-array-list']">
+                        <button mat-button class="menu-button">
+                            <!-- <mat-icon>blok</mat-icon> -->
+                            <span>ArrayInArrayList</span>
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/add-array-in-array-savan']">
+                        <button mat-button class="menu-button">
+                            <!-- <mat-icon>blok</mat-icon> -->
+                            <span>AddArrayInArraySavan</span>
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/add-array-in-array-savan-list']">
+                        <button mat-button class="menu-button">
+                            <!-- <mat-icon>blok</mat-icon> -->
+                            <span>ArrayInArraySavanList</span>
+                        </button>
+                    </a>
+                </li>
+
+                <li>
+                    <a [routerLink]="['/admin/add-array-in-array-package']">
+                        <button mat-button class="menu-button">
+                            <!-- <mat-icon>blok</mat-icon> -->
+                            <span>AddArrayInArrayPackage</span>
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/add-array-in-array-package-list']">
+                        <button mat-button class="menu-button">
+                            <!-- <mat-icon>blok</mat-icon> -->
+                            <span>ArrayInArrayPackageList</span>
+                        </button>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+
+        <div>
+            <button mat-button class="menu-button" (click)="roleWiseclick()">
+                <!-- <mat-icon>blog</mat-icon> -->
+                <span>Role-Wise</span>
+            </button>
+            <ul *ngIf="role === true">
+                <li>
+                    <a [routerLink]="['/admin/save-role-wise']">
+                        <button mat-button class="menu-button">
+                            <!-- <mat-icon>blok</mat-icon> -->
+                            <span>Save-Role-Wise</span>
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/list-role-wise']">
+                        <button mat-button class="menu-button">
+                            <!-- <mat-icon>blok</mat-icon> -->
+                            <span>List-Role-Wise</span>
+                        </button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <button mat-button class="menu-button" (click)="mediaClick()">
+                <!-- <mat-icon>blog</mat-icon> -->
+                <span>Media</span>
+            </button>
+            <ul *ngIf="media === true">
+                <li>
+                    <a [routerLink]="['/admin/add-new-media']">
+                        <button mat-button class="menu-button">
+                            <!-- <mat-icon>blok</mat-icon> -->
+                            <span>Save-Media</span>
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/media-list']">
+                        <button mat-button class="menu-button">
+                            <!-- <mat-icon>blok</mat-icon> -->
+                            <span>List-Media</span>
+                        </button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+
+
+        <mat-divider></mat-divider>
+
+        <!-- <button mat-button class="menu-button">
+            <mat-icon>help</mat-icon>
+            <span>Help</span>
+        </button> -->
+
+        <!-- <button mat-button class="menu-button" (click)="logout()">Logout</button> -->
+
+    </mat-sidenav>
+
+    <!-- 
+
+    <mat-sidenav-content>
+        <div class="content mat-elevation-z4">
+            Main content
+        </div>
+    </mat-sidenav-content> -->
+
+</mat-sidenav-container>
+
+
+<!-- <div style="display: flex; justify-content:space-between; align-items: center;" class="form-group">
+    <div>
+        <a [routerLink]="['/admin/dashboard']"> <button class="btn btn-info">Dashboard</button></a>
+        <a [routerLink]="['/admin/emp-basic-info']"> <button class="btn btn-info">EmpBasicInfoList</button></a>
+
+        <a [routerLink]="['/admin/mul-img']"> <button class="btn btn-info">MulImageUpl</button></a>
+
+        <a [routerLink]="['/admin/blog-list']"> <button class="btn btn-info">Blog-List</button></a>
+
+        <a [routerLink]="['/admin/news-list']"> <button class="btn btn-info">News-List</button></a>
+    </div>
+    <div>
+        <button type="button" (click)="logout()">Logout</button>
+    </div>
+</div> -->

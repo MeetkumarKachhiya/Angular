@@ -1,0 +1,129 @@
+<style>
+    table tr th,
+    table tr td {
+        padding: 10px;
+        height: 10px;
+    }
+
+    .table-height {
+
+        overflow: auto;
+        max-height: 400px;
+    }
+</style>
+<div>
+    <form [formGroup]="blogForm">
+        <div>
+            <input type="text" placeholder="Title" name="Title" formControlName="Title" class="formControl">
+            <div *ngIf="submitteduserData && this.blogForm.controls.Title.errors">
+                <div *ngIf="this.blogForm.controls.Title.errors.required">
+                    <span class="error_msg" style="color: red;">Title is Required.</span>
+                </div>
+                &nbsp;
+            </div>
+        </div>
+        <div>
+            <input type="text" placeholder="Slug" name="Slug" formControlName="Slug" class="formControl">
+            <div *ngIf="submitteduserData && this.blogForm.controls.Slug.errors">
+                <div *ngIf="this.blogForm.controls.Slug.errors.required">
+                    <span class="error_msg" style="color: red;">Slug is Required.</span>
+                </div>
+                &nbsp;
+            </div>
+        </div>
+        <div>
+            <input type="text" placeholder="Meta title" name="Metatitle" formControlName="Metatitle"
+                class="formControl">
+            <div *ngIf="submitteduserData && this.blogForm.controls.Metatitle.errors">
+                <div *ngIf="this.blogForm.controls.Metatitle.errors.required">
+                    <span class="error_msg" style="color: red;">Meta title is Required.</span>
+                </div>
+                &nbsp;
+            </div>
+        </div>
+        <div>
+            <input type="text" placeholder="Meta Desc" name="MetaDesc" formControlName="MetaDesc" class="formControl">
+            <div *ngIf="submitteduserData && this.blogForm.controls.MetaDesc.errors">
+                <div *ngIf="this.blogForm.controls.MetaDesc.errors.required">
+                    <span class="error_msg" style="color: red;">MetaDesc is Required.</span>
+                </div>
+                &nbsp;
+            </div>
+        </div>
+        <div>
+            <input type="text" placeholder="Meta Keyword" name="MetaKeyword" formControlName="MetaKeyword"
+                class="formControl">
+            <div *ngIf="submitteduserData && this.blogForm.controls.MetaKeyword.errors">
+                <div *ngIf="this.blogForm.controls.MetaKeyword.errors.required">
+                    <span class="error_msg" style="color: red;">MetaKeyword is Required.</span>
+                </div>
+                &nbsp;
+            </div>
+        </div>
+
+        <div>
+            <input type="text" placeholder="Short Desc" name="ShortDesc" formControlName="ShortDesc"
+                class="formControl">
+            <div *ngIf="submitteduserData && this.blogForm.controls.ShortDesc.errors">
+                <div *ngIf="this.blogForm.controls.ShortDesc.errors.required">
+                    <span class="error_msg" style="color: red;">ShortDesc is Required.</span>
+                </div>
+                &nbsp;
+            </div>
+        </div>
+
+        <div>
+            <input type="text" placeholder="Long Description" name="LongDesc" formControlName="LongDesc"
+                class="formControl">
+            <div *ngIf="submitteduserData && this.blogForm.controls.LongDesc.errors">
+                <div *ngIf="this.blogForm.controls.LongDesc.errors.required">
+                    <span class="error_msg" style="color: red;">LongDesc is Required.</span>
+                </div>
+                &nbsp;
+            </div>
+        </div>
+
+
+        <table>
+            <tr *ngFor="let url of urls; let i =index">
+                <th> {{i}}</th>
+                <td>
+                    <video width="70" controls>
+                        <source src="{{url.videoUrl}}" height="50">
+                    </video>
+                </td>
+                <button (click)=" DeletePhoto({id :url.videoId,index:i})">delete</button>
+            </tr>
+        </table>
+
+        <div>
+            <input type="file" accept="video/*" multiple (change)="detectFiles($event)" formControlName="file">
+            <!-- <span class="fileinput-new">Select image</span> -->
+            <!-- <div *ngIf="submitteduserData && this.blogForm.controls.file.errors"> -->
+            <!-- <div *ngIf="this.blogForm.controls.file.errors.required">
+                    <span class="error_msg" style="color: red;">profile_image is Required.</span>
+                </div> -->
+            &nbsp;
+            <!-- </div> -->
+        </div>
+
+        &nbsp;
+        <div>
+            <button type="button" (click)="AddblogData()" *ngIf="Isedit===false">
+                Add
+            </button>
+            <button (click)="UpdateEmpData()" *ngIf="Isedit===true">
+                Update
+            </button>
+            &nbsp;
+            <a [routerLink]="['/admin/dashboard']"> <button class="btn btn-info">Back</button></a>
+        </div>
+    </form>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>
+<!-- <button type="button" (click)="logout()">Logout</button> -->
+
+&nbsp;&nbsp;&nbsp;

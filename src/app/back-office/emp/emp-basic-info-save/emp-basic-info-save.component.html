@@ -1,0 +1,127 @@
+<style>
+    table tr th,
+    table tr td {
+        padding: 10px;
+        height: 10px;
+    }
+
+    .table-height {
+
+        overflow: auto;
+        max-height: 400px;
+    }
+</style>
+<div>
+    <form [formGroup]="empBasicInfo">
+        <!-- <div>
+            <input type="text" hidden placeholder="_id" name="_id" formControlName="_id" class="formControl">
+            <div *ngIf="submitteduserData && this.empBasicInfo.controls.firstName.errors">
+                <div *ngIf="this.empBasicInfo.controls.firstName.errors.required">
+                    <span class="error_msg">First Name is Required.</span>
+                </div>
+            </div>
+        </div> -->
+        <div>
+            <input type="text" placeholder="firstName" name="firstName" formControlName="firstName" class="formControl">
+            <div *ngIf="submitteduserData && this.empBasicInfo.controls.firstName.errors">
+                <div *ngIf="this.empBasicInfo.controls.firstName.errors.required">
+                    <span class="error_msg" style="color: red;">First Name is Required.</span>
+                </div>
+                &nbsp;
+            </div>
+        </div>
+        <div>
+            <input type="text" placeholder="middleName" name="middleName" formControlName="middleName"
+                class="formControl">
+            <div *ngIf="submitteduserData && this.empBasicInfo.controls.middleName.errors">
+                <div *ngIf="this.empBasicInfo.controls.middleName.errors.required">
+                    <span class="error_msg" style="color: red;">Middle Name is Required.</span>
+                </div>
+                &nbsp;
+            </div>
+        </div>
+        <div>
+            <input type="text" placeholder="lastName" name="lastName" formControlName="lastName" class="formControl">
+            <div *ngIf="submitteduserData && this.empBasicInfo.controls.lastName.errors">
+                <div *ngIf="this.empBasicInfo.controls.lastName.errors.required">
+                    <span class="error_msg" style="color: red;">Last Name is Required.</span>
+                </div>
+                &nbsp;
+            </div>
+        </div>
+        <div>
+            <input type="text" placeholder="p_Email" name="p_Email" formControlName="p_Email" class="formControl">
+            <div *ngIf="submitteduserData && this.empBasicInfo.controls.p_Email.errors">
+                <div *ngIf="this.empBasicInfo.controls.p_Email.errors.required">
+                    <span class="error_msg">p_Email is Required.</span>
+                </div>
+                <div
+                    *ngIf="!this.empBasicInfo.controls.p_Email.errors.valid && !this.empBasicInfo.controls.p_Email.errors.required">
+                    <span class="error_msg" style="color: red;">Please Enter Valid Email ID.</span>
+                </div>
+                &nbsp;
+            </div>
+        </div>
+        <div>
+            <input type="text" placeholder="p_Mobile" name="p_Mobile" formControlName="p_Mobile" class="formControl">
+            <div *ngIf="submitteduserData && this.empBasicInfo.controls.p_Mobile.errors">
+                <div *ngIf="this.empBasicInfo.controls.p_Mobile.errors.required">
+                    <span class="error_msg" style="color: red;">P_Mobile is Required.</span>
+                </div>
+                &nbsp;
+            </div>
+        </div>
+        <div>
+            <label>Gender:</label>
+            <input type="radio" name="gender" value="1" formControlName="gender">
+            Male
+            <input type="radio" name="gender" value="2" formControlName="gender">
+            Female
+            <input type="radio" name="gender" value="3" formControlName="gender">
+            Other
+            <div *ngIf="submitteduserData && this.empBasicInfo.controls.gender.errors">
+                <div *ngIf="this.empBasicInfo.controls.gender.errors.required">
+                    <span class="error_msg" style="color: red;">gender is Required.</span>
+                </div>
+                &nbsp;
+            </div>
+        </div>
+        <div>
+            <label for="file">Choose File</label>
+            <div *ngIf="imageTrue">
+                <div *ngIf="url !== imgUrl">
+                    <img src="{{url}}" height="50">
+                </div>
+                <div *ngIf="url == imgUrl">
+                    <div>No Image</div>
+                </div>
+                <button (click)=" DeletePhoto()">delete</button>
+            </div>
+            <!-- <input accept=".pmg, .text" type="file" id="file" (change)="handleFileInput($event)" name="file" -->
+            <input type="file" id="file" (change)="handleFileInput($event)" name="file" formControlName="file"
+                placeholder="file">
+            <div *ngIf="submitteduserData && this.empBasicInfo.controls.file.errors">
+                <div *ngIf="this.empBasicInfo.controls.file.errors.required">
+                    <span class="error_msg" style="color: red;">profile_image is Required.</span>
+                </div>
+                &nbsp;
+            </div>
+        </div>
+        &nbsp;
+        <div>
+            <button type="button" (click)="AddEmpData()" *ngIf="Isedit===false">
+                Add
+            </button>
+            <button (click)="UpdateEmpData()" *ngIf="Isedit===true">
+                Update
+            </button>
+            &nbsp;
+            <a [routerLink]="['/admin/dashboard']"> <button class="btn btn-info">Back</button></a>
+        </div>
+    </form>
+</div>
+
+
+<!-- <button type="button" (click)="logout()">Logout</button> -->
+
+&nbsp;&nbsp;&nbsp;

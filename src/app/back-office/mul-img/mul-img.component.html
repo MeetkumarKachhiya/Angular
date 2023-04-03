@@ -1,0 +1,23 @@
+<div>
+    <img *ngFor="let url of urls" [src]="url" class="rounded mb-3" width="180" style="margin: 10px; border: 1px solid;">
+</div>
+<div>
+    <form [formGroup]="imgForm">
+        <input type="file" multiple (change)="detectFiles($event)">
+        <button type="button" (click)="mulImgUpload()">
+            Upload
+        </button>
+    </form>
+</div>
+
+
+<div>
+
+    <div class="table-height">
+        <table style="text-align:center; width: 100%;">
+            <tr *ngFor="let empData of ImgData; let i =index">
+                <td><img src="{{imgUrl}}{{empData}}" height="50"></td>
+            </tr>
+        </table>
+    </div>
+</div>

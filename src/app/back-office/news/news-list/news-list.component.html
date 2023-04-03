@@ -1,0 +1,94 @@
+<style>
+    table tr th,
+    table tr td {
+        padding: 10px;
+        height: 10px;
+    }
+
+    .table-height {
+        overflow: auto;
+        max-height: 400px;
+    }
+</style>
+
+
+<!-- <button type="button" (click)="logout()">Logout</button> -->
+
+&nbsp;&nbsp;&nbsp;
+<div>
+    <div style="font-size:30px; text-align: center; margin-bottom: 20px;">News Data List</div>
+    <div style="display: flex; justify-content:space-between; align-items: center;" class="form-group">
+        <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term" style="width: 300px;">
+        <a [routerLink]="['/admin/add-new-news']"> <button class="btn btn-info">Add-New-News</button></a>
+    </div>
+    <div class="table-height">
+        <table matSort (matSortChange)="sortData($event)" border="1 px Solid black"
+            style="text-align:center; width: 100%;">
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th mat-sort-header="firstName">Title</th>
+                <th mat-sort-header="lastName">Slug</th>
+                <th class="width-10">Status</th>
+                <th class="width-10">Delete</th>
+                <th class="width-10">Edit</th>
+            </tr>
+            <tr
+                *ngFor="let blogData of blogApiData | filter:term | paginate: { itemsPerPage: ip, currentPage: p}; let i =index">
+                <th> {{ ip * (p - 1) + i +1 }}</th>
+                <td><img src="{{imgUrl}}{{blogData.video}}" height="50"></td>
+                <td>{{blogData.title}}</td>
+                <td>{{blogData.slug}}</td>
+                <td>
+                    <span *ngIf="blogData.status === 1">Active</span>
+                    <span *ngIf="blogData.status === 2">Deactive</span>
+                </td>
+                <td>
+                    <ul class="d-flex align-items-center action-list">
+                        <li class="action-list-item">
+                            <a *ngIf="blogData.status == 2"
+                                (click)="statusBlog({id :blogData._id, index:i, status:1, text:'Are you sure you want to Active this Caretaker?',buttontext:'Active'})"><button
+                                    type="button"
+                                    style="background-color: rgb(103, 136, 103); border-radius: 20px;">A</button></a>
+                            <a *ngIf="blogData.status == 1"
+                                (click)="statusBlog({id :blogData._id, index:i, status:2, text:'Are you sure you want to Deactive this Caretaker?',buttontext:'Deactive'})"><button
+                                    type="button"
+                                    style="background-color: rgb(224, 26, 26); border-radius: 20px;">D</button></a>
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    <a routerLink="/admin/edit-news-info/{{blogData._id}}"><button>Edit</button></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+<a [routerLink]="['/admin/dashboard']"> <button class="btn btn-info">Back</button></a>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>
+
+<!-- <p>blog-list works!</p>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Middle Name</th>
+        <th>Last Name</th>
+        <th>P_Mobile</th>
+        <th>Gender</th>
+        <th>P_Email</th>
+        <th>Edit</th>
+    </tr>
+    <tr *ngFor="let empData of empApiData; let i =index">
+        <th> {{i}}</th>
+        <td>{{empData.firstName}}</td>
+        <td>{{empData.middleName}}</td>
+        <td>{{empData.lastName}}</td>
+        <td>{{empData.p_Mobile}}</td>
+        <td>{{empData.gender}}</td>
+        <td>{{empData.p_Email}}</td>
+    </tr>
+</table> -->

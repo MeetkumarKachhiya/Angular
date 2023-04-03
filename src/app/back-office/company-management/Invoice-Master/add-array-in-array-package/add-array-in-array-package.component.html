@@ -1,0 +1,116 @@
+<h1>Angular Nested FormArray / Dynamic FormArray</h1>
+
+<form [formGroup]="packageForm">
+    <div>
+        packageName :
+        <input type="text" formControlName="packageName" />
+        <div *ngIf="submittedPackageData && packageData.packageName.errors">
+            <div *ngIf="packageData.packageName.errors.required">
+                <span class="error_msg" style="color: red;">package Name is Required.</span>
+            </div>
+        </div>
+        <br>
+    </div>
+    <div formArrayName="package">
+
+        <!-- <div *ngFor="let employee of packageForm.get('package').controls; let packageIndex=index"> -->
+        <div *ngFor="let employee of packageForm.get('package').controls; let packageIndex=index">
+            <div [formGroupName]="packageIndex"
+                style="border: 1px solid blue; padding: 10px; width: 600px; margin: 5px;">
+
+                <div>
+                    [{{packageIndex}}]: Category Name :
+                    <input type="text" formControlName="categoryName" />
+                    <div *ngIf="submittedPackageData && employee.controls.categoryName.errors?.required">
+                        <div *ngIf="employee.controls.categoryName.errors?.required">
+                            <span class="error_msg" style="color: red;">categoryName is Required.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div>
+                    Description :
+                    <input type="text" formControlName="categoryDescription" />
+                    <div *ngIf="submittedPackageData && employee.controls.categoryDescription.errors?.required">
+                        <div *ngIf="employee.controls.categoryDescription.errors?.required">
+                            <span class="error_msg" style="color: red;">category Description is Required.</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div><button (click)="removePackage(packageIndex)">Remove</button></div>
+                </div>
+
+                <br>
+
+                <div formArrayName="packageCategoryList">
+                    <div
+                        *ngFor="let skill of employee.controls.packageCategoryList.controls; let packageCategoryIndex=index">
+                        <div [formGroupName]="packageCategoryIndex">
+
+                            <div>
+                                ({{packageCategoryIndex}}):Item :
+                                <input type="text" formControlName="item" />
+                                <div *ngIf="submittedPackageData && skill.controls.item.errors?.required">
+                                    <div *ngIf="skill.controls.item.errors?.required">
+                                        <span class="error_msg" style="color: red;">Item is
+                                            Required.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div>
+                                Description :
+                                <input type="text" formControlName="description" />
+                                <div *ngIf="submittedPackageData && skill.controls.description.errors?.required">
+                                    <div *ngIf="skill.controls.description.errors?.required">
+                                        <span class="error_msg" style="color: red;">Description is
+                                            Required.</span>
+                                    </div>
+                                </div>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;
+                            </div>
+                            <br>
+
+                            <div>
+                                Quantity :
+                                <input type="text" formControlName="quantity" />
+                                <div *ngIf="submittedPackageData && skill.controls.quantity.errors?.required">
+                                    <div *ngIf="skill.controls.quantity.errors?.required">
+                                        <span class="error_msg" style="color: red;">Quantity is
+                                            Required.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                            <button (click)="removePackageCategory(packageIndex,packageCategoryIndex)">
+                                Remove
+                            </button>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <button type="button"
+                    [ngClass]="packageForm.controls['package'].controls[packageIndex].controls.packageCategoryList.invalid == true ? 'd-none' : 'd-block'"
+                    (click)="packageCategory(packageIndex)">
+                    Add PackageCategory
+                </button>
+            </div>
+        </div>
+        <button type="button" (click)="addPackage()">Add Package</button>
+    </div>
+    <button type="submit" (click)="onSubmit()" *ngIf="Isedit==false">Submit</button>
+    <button type="button" (click)="onUpdate()" *ngIf="Isedit==true">Update</button>
+</form>
+
+<!-- {{this.packageForm.value | json}} -->
+
+<br /><br />
+<!-- <a href="https://www.tektutorialshub.com/angular/nested-formarray-example-add-form-fields-dynamically/">Nested FormArray
+    / Dynamic FormArray</a> -->

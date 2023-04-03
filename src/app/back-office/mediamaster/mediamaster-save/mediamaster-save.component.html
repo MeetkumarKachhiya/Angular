@@ -1,0 +1,73 @@
+<ngx-dropzone (change)="onSelect($event)">
+    <ngx-dropzone-label>Drop it, File!</ngx-dropzone-label>
+    <!-- <div>
+        <form [formGroup]="empBasicInfo">
+            <input type="file" id="file" name="file" formControlName="file" placeholder="file">
+        </form>
+    </div> -->
+    <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+    </ngx-dropzone-preview>
+</ngx-dropzone>
+
+<!-- 
+<ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
+    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+</ngx-dropzone-image-preview>
+
+<ngx-dropzone #drop></ngx-dropzone>
+<button (click)="drop.showFileSelector()">Open</button> -->
+
+
+<!-- <style>
+    table tr th,
+    table tr td {
+        padding: 10px;
+        height: 10px;
+    }
+
+    .table-height {
+
+        overflow: auto;
+        max-height: 400px;
+    }
+</style>
+<div>
+    <form [formGroup]="empBasicInfo">
+        <div>
+            <label for="file">Choose File</label>
+            <div *ngIf="imageTrue">
+                <div *ngIf="url !== imgUrl">
+                    <img src="{{url}}" height="50">
+                </div>
+                <div *ngIf="url == imgUrl">
+                    <div>No Image</div>
+                </div>
+                <button (click)=" DeletePhoto()">delete</button>
+            </div>
+            <input type="file" id="file" (change)="handleFileInput($event)" name="file" formControlName="file"
+                placeholder="file">
+            <div *ngIf="submitteduserData && this.empBasicInfo.controls.file.errors">
+                <div *ngIf="this.empBasicInfo.controls.file.errors.required">
+                    <span class="error_msg" style="color: red;">profile_image is Required.</span>
+                </div>
+                &nbsp;
+            </div>
+        </div>
+        &nbsp;
+        <div>
+            <button type="button" (click)="AddEmpData()" *ngIf="Isedit===false">
+                Add
+            </button>
+            <button (click)="UpdateEmpData()" *ngIf="Isedit===true">
+                Update
+            </button>
+            &nbsp;
+            <a [routerLink]="['/admin/dashboard']"> <button class="btn btn-info">Back</button></a>
+        </div>
+    </form>
+</div>
+ -->
+
+
+&nbsp;&nbsp;&nbsp;
